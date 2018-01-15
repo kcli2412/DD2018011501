@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     public void click2(View v)
     {
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-        StringRequest request = new StringRequest("https://www.mobile01.com/rss/news.xml",
+        StringRequest request = new UTF8StringRequest("https://www.mobile01.com/rss/news.xml",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
