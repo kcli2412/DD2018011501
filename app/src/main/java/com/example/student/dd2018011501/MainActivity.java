@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -16,22 +17,29 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 public class MainActivity extends AppCompatActivity {
+    ProgressBar pb;
+    ImageView img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        pb = (ProgressBar) findViewById(R.id.progressBar);
+        img = (ImageView) findViewById(R.id.imageView);
     }
 
     public void click1(View v)
     {
+        pb.setVisibility(View.VISIBLE);
+        img.setVisibility(View.INVISIBLE);
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
         ImageRequest request = new ImageRequest("https://5.imimg.com/data5/UH/ND/MY-4431270/red-rose-flower-500x500.jpg",
                 new Response.Listener<Bitmap>() {
                     @Override
                     public void onResponse(Bitmap response) {
-                        ImageView img = (ImageView) findViewById(R.id.imageView);
                         img.setImageBitmap(response);
+                        pb.setVisibility(View.INVISIBLE);
+                        img.setVisibility(View.VISIBLE);
                     }
                 }, 0, 0, ImageView.ScaleType.FIT_XY, Bitmap.Config.RGB_565,
                 new Response.ErrorListener(){
